@@ -1,0 +1,42 @@
+// No he visto ninguna peli de los Vengadores
+
+ENT
+	class clsLuchador{
+		private int idLuchador;
+		private string nombre;
+		private string foto;
+		// private string puntuacion;
+
+		public int IdLuchador
+		{
+			get {return idLuchador;}
+			set {idLuchador = value;} // Puede que sí o puede que no
+		}
+
+		public string Nombre
+		{
+			get {return nombre;}
+			set {nombre = value;}
+		}
+
+		public string Foto
+		{
+			get {return foto;}
+			set {foto = value;}
+		}
+
+		public clsLuchadores()
+		{
+		}
+
+		public clsLuchadores(int idLuchador, string nombre, string foto)
+		{
+			this.idLuchador = idLuchador;
+			this.nombre = nombre;
+			this.foto = foto;
+		}
+	}
+
+	class clsCombate{
+	
+	}
