@@ -5,7 +5,7 @@ ENT
 		private int idLuchador;
 		private string nombre;
 		private string foto;
-		// private string puntuacion;
+		// private string puntuacion; // En nuestra BBDD no
 
 		public int IdLuchador
 		{
@@ -37,6 +37,53 @@ ENT
 		}
 	}
 
-	class clsCombate{
-	
+	class clsCombate{		
+		private int idLuchador1;
+		private int idLuchador2;
+		private Date fecha;
+		private int puntosLuchador1;
+		private int puntosLuchador2;
+
+		public int IdLuchador1
+		{
+			get {return idLuchador1;}
+			set {idLuchador1 = value;} // Puede que sí o puede que no
+		}
+
+		public int IdLuchador2
+		{
+			get {return idLuchador2;}
+			set {idLuchador2 = value;} // Puede que sí o puede que no
+		}
+
+		public Date Fecha
+		{
+			get {return fecha;}
+			set {fecha = value;} // No lo creo
+		}
+
+		public int PuntosLuchador1
+		{
+			get {return puntosLuchador1;}
+			set {puntosLuchador1 = value;} 
+		}
+
+		public int PuntosLuchador2
+		{
+			get {return puntosLuchador2;}
+			set {puntosLuchador2 = value;} 
+		}
+
+		public clsLuchadores()
+		{
+			this.fecha = //Fecha actual
+		}
+
+		public clsLuchadores(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2) : base()
+		{
+			this.idLuchador1 = idLuchador1;
+			this.idLuchador2 = idLuchador2;
+			this.puntosLuchador1 = puntosLuchador1;
+			this.puntosLuchador2 = puntosLuchador2;
+		}
 	}
