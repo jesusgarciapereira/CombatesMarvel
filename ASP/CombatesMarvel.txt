@@ -25,11 +25,11 @@ ENT
 			set {foto = value;}
 		}
 
-		public clsLuchadores()
+		public clsLuchador()
 		{
 		}
 
-		public clsLuchadores(int idLuchador, string nombre, string foto)
+		public clsLuchador(int idLuchador, string nombre, string foto)
 		{
 			this.idLuchador = idLuchador;
 			this.nombre = nombre;
@@ -74,12 +74,12 @@ ENT
 			set {puntosLuchador2 = value;} 
 		}
 
-		public clsLuchadores()
+		public clsCombate()
 		{
 			this.fecha = //Fecha actual
 		}
 
-		public clsLuchadores(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2) : base()
+		public clsCombate(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2) : ¿base()?
 		{
 			this.idLuchador1 = idLuchador1;
 			this.idLuchador2 = idLuchador2;
@@ -87,3 +87,207 @@ ENT
 			this.puntosLuchador2 = puntosLuchador2;
 		}
 	}
+
+DAL
+	clsListadosLuchadoresDAL{
+		public static List<clsLuchador> ObtenerListadoLuchadoresDAL()
+		public static List<clsLuchador> ObtenerListadoLuchadoresOrdenadoDAL() // No sé
+	}
+
+	clsListadosCombatesDAL{
+		public static List<clsCombate> ObtenerListadoCombatesDAL()
+	
+	}
+
+	clsManejadoraCombatesDAL{
+		private static bool CreaCombateDAL(clsCombate combate)
+		private static bool ActualizaCombateDAL(clsCombate combate)
+		private static bool CompruebaExistenciaCombateDAL(clsCombate combate)
+		public static bool GuardarCombateDAL(clsCombate combate)
+	}
+
+	Conexion
+		clsMyConnection{
+		}
+
+BL 
+	clsListadosLuchadoresBL{
+		public static List<clsLuchador> ObtenerListadoLuchadoresBL()
+		public static List<clsLuchador> ObtenerListadoLuchadoresOrdenadoBL() // No sé	 
+	}
+
+	clsListadosCombatesBL{
+		public static List<clsCombate> ObtenerListadoCombatesBL()
+	
+	}
+
+	clsManejadoraCombatesBL{
+		private static bool CreaCombateBL(clsCombate combate)
+		private static bool ActualizaCombateBL(clsCombate combate)
+		private static bool CompruebaExistenciaCombateBL(clsCombate combate)
+		public static bool GuardarCombateBL(clsCombate combate)
+	}
+
+DTO
+	clsLuchadorConPuntuacionTotal : Luchador {
+			private int puntosTotales;
+
+			public int puntosTotales
+			{
+				get {return puntosTotales;}
+				set {puntosTotales = value;} // ¿No tiene este?
+			}
+
+			public clsLuchadorConPuntuacionTotal()
+			{
+			}
+
+			public clsLuchadorConPuntuacionTotal(int puntosTotales) : base(int idLuchador, string nombre, string foto)
+			{
+				this.puntosTotales = puntosTotales;
+			}
+		}
+
+ASP
+	Controllers
+		HomeController: Controller{
+			IActionResult Index()
+		}
+
+		CombatesController: Controller{
+			IActionResult Index(){
+				return View(clsPuntuacionCombate PuntuacionCombate); // O ESTO List<clsLuchador>
+			}
+
+			[HttpPost]
+			IActionResult Index(clsCombate combate) 
+		}
+
+		ClasificacionController: Controller{
+			IActionResult Index()
+		}
+		
+	Models	
+		VM
+			// Para la página 1 PUEDE QUE TODO ESTO NO HAGA FALTA AQUÍ
+			clsPuntuacionCombate : Combate { 
+				private List<clsLuchador> listadoLuchadores;
+				private List<Integer> puntuaciones;
+
+				public List<clsLuchador> ListadoLuchadores
+				{
+					get {return listadoLuchadores;}
+				}
+
+				public List<Integer> Puntuaciones
+				{
+					get {return puntuaciones;}
+				}
+
+				public clsPuntuacionCombate() : base()
+				{
+				}
+
+				public clsPuntuacionCombate(List<clsLuchador> listadoLuchadores, List<Integer> puntuaciones) : base(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2)
+				{
+					this.listadoLuchadores = listadoLuchadores;
+					this.puntuaciones = puntuaciones;
+				}
+
+			}
+
+			// Para la página 2
+			clsListadoLuchadoresConPuntuacionTotal{ 
+				private List<clsLuchadorConPuntuacionTotal> listadoLuchadoresConPuntuacionTotal;
+
+				public List<clsLuchadorConPuntuacionTotal> ListadoLuchadoresConPuntuacionTotal
+				{
+					get {return listadoLuchadoresConPuntuacionTotal;}
+					set {listadoLuchadoresConPuntuacionTotal = value;} // Puede que sí o puede que no
+				}
+			}
+	Views
+		Vista con dos enlaces
+		Vista con la clasificacion de personajes con su puntuacion
+		Vista para crear/editar combates y puntuarlos
+
+MAUI 
+	VM
+			// Para la página 1 
+			clsPuntuacionCombate : Combate { // Creo que no Hereda
+				private List<clsLuchador> listadoLuchadores;
+				private List<Integer> puntuaciones;
+				private clsLuchador luchadorElegido1;
+				private clsLuchador luchadorElegido2;
+				private int puntuacionElegida1;
+				private int puntuacionElegida2;
+				private Command botonEnviar;
+
+
+				public List<clsLuchador> ListadoLuchadores
+				{
+					get {return listadoLuchadores;}
+				}
+
+				public List<Integer> Puntuaciones
+				{
+					get {return puntuaciones;}
+				}
+
+				public clsLuchador LuchadorElegido1
+				{
+					get {return luchadorElegido1;}
+					set {luchadorElegido1 = value;} 
+				}
+
+				public clsLuchador LuchadorElegido2
+				{
+					get {return luchadorElegido2;}
+					set {luchadorElegido2 = value;} 
+				}
+
+				public clsLuchador PuntuacionElegida1
+				{
+					get {return puntuacionElegida1;}
+					set {puntuacionElegida1 = value;} 
+				}
+
+				public clsLuchador PuntuacionElegida2
+				{
+					get {return puntuacionElegida2;}
+					set {puntuacionElegida2 = value;} 
+				}
+
+				public Command BotonEnviar
+				{
+					get {return botonEnviar;}
+				}
+
+
+				public clsPuntuacionCombate() : base()
+				{
+				}
+
+				public clsPuntuacionCombate(List<clsLuchador> listadoLuchadores, List<Integer> puntuaciones) : base(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2)
+				{
+					this.listadoLuchadores = listadoLuchadores;
+					this.puntuaciones = puntuaciones;
+				}
+
+			}
+
+			// Para la página 2
+			clsListadoLuchadoresConPuntuacionTotal{ 
+				private List<clsLuchadorConPuntuacionTotal> listadoLuchadoresConPuntuacionTotal;
+
+				public List<clsLuchadorConPuntuacionTotal> ListadoLuchadoresConPuntuacionTotal
+				{
+					get {return listadoLuchadoresConPuntuacionTotal;}
+					set {listadoLuchadoresConPuntuacionTotal = value;} // Puede que sí o puede que no
+				}
+			}
+
+	Views
+		Vista con dos enlaces
+		Vista con la clasificacion de personajes con su puntuacion
+		Vista para crear/editar combates y puntuarlos
