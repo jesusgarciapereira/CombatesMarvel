@@ -26,77 +26,94 @@ ENT
 		}
 
 		public clsLuchador()
-		{
-		}
+        {
+        }
 
-		public clsLuchador(int idLuchador, string nombre, string foto)
-		{
-			this.idLuchador = idLuchador;
-			this.nombre = nombre;
-			this.foto = foto;
-		}
+        public clsLuchador(int idLuchador)
+        {
+            this.idLuchador = idLuchador;
+        }
+
+        public clsLuchador(int idLuchador, string nombre, string foto) 
+        {
+            this.idLuchador = idLuchador;
+            this.nombre = nombre;
+            this.foto = foto;
+        }
 	}
 
 	class clsCombate{		
 		private int idLuchador1;
-		private int idLuchador2;
-		private Date fecha;
-		private int puntosLuchador1;
-		private int puntosLuchador2;
+        private int idLuchador2;
+        private DateTime fecha;
+        private int puntosLuchador1;
+        private int puntosLuchador2;
 
-		public int IdLuchador1
-		{
-			get {return idLuchador1;}
-			set {idLuchador1 = value;} // Puede que sí o puede que no
-		}
+        public int IdLuchador1
+        {
+            get { return idLuchador1; }
+            set { idLuchador1 = value; } // Puede que sí o puede que no
+        }
 
-		public int IdLuchador2
-		{
-			get {return idLuchador2;}
-			set {idLuchador2 = value;} // Puede que sí o puede que no
-		}
+        public int IdLuchador2
+        {
+            get { return idLuchador2; }
+            set { idLuchador2 = value; } // Puede que sí o puede que no
+        }
 
-		public Date Fecha
-		{
-			get {return fecha;}
-			set {fecha = value;} // No lo creo
-		}
+        public DateTime Fecha
+        {
+            get { return fecha; }
+            set { fecha = value; } // No lo creo ¿o puede?
+        }
 
-		public int PuntosLuchador1
-		{
-			get {return puntosLuchador1;}
-			set {puntosLuchador1 = value;} 
-		}
+        public int PuntosLuchador1
+        {
+            get { return puntosLuchador1; }
+            set { puntosLuchador1 = value; }
+        }
 
-		public int PuntosLuchador2
-		{
-			get {return puntosLuchador2;}
-			set {puntosLuchador2 = value;} 
-		}
+        public int PuntosLuchador2
+        {
+            get { return puntosLuchador2; }
+            set { puntosLuchador2 = value; }
+        }
 
-		public clsCombate()
-		{
-			this.fecha = //Fecha actual
-		}
+        public clsCombate()
+        {
+            this.fecha = DateTime.Now;
 
-		public clsCombate(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2) : ¿base()?
-		{
-			this.idLuchador1 = idLuchador1;
-			this.idLuchador2 = idLuchador2;
-			this.puntosLuchador1 = puntosLuchador1;
-			this.puntosLuchador2 = puntosLuchador2;
-		}
+        }
+
+        public clsCombate(int idLuchador1, int idLuchador2, DateTime fecha)
+        {
+            this.idLuchador1 = idLuchador1;
+            this.idLuchador2 = idLuchador2;
+            this.fecha = fecha;
+        }
+
+        public clsCombate(int idLuchador1, int idLuchador2, DateTime fecha, int puntosLuchador1, int puntosLuchador2)
+        {
+            this.idLuchador1 = idLuchador1;
+            this.idLuchador2 = idLuchador2;
+            this.fecha = fecha;
+            this.puntosLuchador1 = puntosLuchador1;
+            this.puntosLuchador2 = puntosLuchador2;
+        }
 	}
 
 DAL
 	clsListadosLuchadoresDAL{
 		public static List<clsLuchador> ObtenerListadoLuchadoresDAL()
-		public static List<clsLuchador> ObtenerListadoLuchadoresOrdenadoDAL() // No sé
 	}
 
 	clsListadosCombatesDAL{
 		public static List<clsCombate> ObtenerListadoCombatesDAL()
 	
+	}
+
+	clsListadosLuchadoresConPuntuacionTotalDAL{
+		public static List<clsLuchadorConPuntuacionTotal> ObtenerListadoLuchadoresConPuntuacionTotalDAL()
 	}
 
 	clsManejadoraCombatesDAL{
@@ -113,12 +130,15 @@ DAL
 BL 
 	clsListadosLuchadoresBL{
 		public static List<clsLuchador> ObtenerListadoLuchadoresBL()
-		public static List<clsLuchador> ObtenerListadoLuchadoresOrdenadoBL() // No sé	 
 	}
 
 	clsListadosCombatesBL{
 		public static List<clsCombate> ObtenerListadoCombatesBL()
 	
+	}
+
+	clsListadosLuchadoresConPuntuacionTotalBL{
+		public static List<clsLuchadorConPuntuacionTotal> ObtenerListadoLuchadoresConPuntuacionTotalBL()
 	}
 
 	clsManejadoraCombatesBL{
@@ -130,22 +150,22 @@ BL
 
 DTO
 	clsLuchadorConPuntuacionTotal : Luchador {
-			private int puntosTotales;
+		private int puntosTotales;
 
-			public int puntosTotales
-			{
-				get {return puntosTotales;}
-				set {puntosTotales = value;} // ¿No tiene este?
-			}
+        public int PuntosTotales
+        {
+            get { return puntosTotales; }
+            set { puntosTotales = value; } // ¿No tiene este?
+        }
 
-			public clsLuchadorConPuntuacionTotal()
-			{
-			}
+        public clsLuchadorConPuntuacionTotal()
+        {
+        }
 
-			public clsLuchadorConPuntuacionTotal(int puntosTotales) : base(int idLuchador, string nombre, string foto)
-			{
-				this.puntosTotales = puntosTotales;
-			}
+        public clsLuchadorConPuntuacionTotal(clsLuchador luchador, int puntosTotales) : base(luchador.IdLuchador, luchador.Nombre, luchador.Foto)
+        {
+            this.puntosTotales = puntosTotales;
+        }
 		}
 
 ASP
@@ -154,7 +174,7 @@ ASP
 			IActionResult Index()
 		}
 
-		CombatesController: Controller{
+		CombateController: Controller{
 			IActionResult Index(){
 				return View(clsPuntuacionCombate PuntuacionCombate); // O ESTO List<clsLuchador>
 			}
