@@ -22,8 +22,6 @@ namespace DTO
         {
         }
 
-
-
         public clsLuchadorConPuntuacionTotal(clsLuchador luchador, int puntosTotales) : base(luchador.IdLuchador, luchador.Nombre, luchador.Foto)
         {
             this.puntosTotales = puntosTotales;
