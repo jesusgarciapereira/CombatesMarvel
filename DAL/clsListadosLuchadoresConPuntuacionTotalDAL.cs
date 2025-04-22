@@ -42,7 +42,7 @@ namespace DAL
                                                 "CASE " +
                                                     "WHEN Combates.idLuchador1 = Luchadores.idLuchador THEN Combates.puntosLuchador1 " +
                                                     "WHEN Combates.idLuchador2 = Luchadores.idLuchador THEN Combates.puntosLuchador2 " +
-                                                    "ELSE O " +
+                                                    "ELSE 0 " +
                                                 "END " +
                                                 "), 0) AS puntosTotales " +
                                            "FROM Luchadores " +
