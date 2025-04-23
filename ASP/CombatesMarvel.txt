@@ -287,7 +287,7 @@ MAUI
 				{
 				}
 
-				public clsPuntuacionCombate(List<clsLuchador> listadoLuchadores, List<Integer> puntuaciones) : base(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2)
+				public clsPuntuacionCombate(List<clsLuchador> listadoLuchadores, List<Integer> puntuaciones) : base(idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2)
 				{
 					this.listadoLuchadores = listadoLuchadores;
 					this.puntuaciones = puntuaciones;
