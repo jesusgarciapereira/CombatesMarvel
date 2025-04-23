@@ -81,6 +81,7 @@ namespace DAL
                             luchador.Foto = (string)miLector["foto"];
                         }
                         luchadorConPuntuacionTotal = new clsLuchadorConPuntuacionTotal(luchador, (int)miLector["puntosTotales"]);
+                        
                         listadoCompletoLuchadoresConPuntuacionTotal.Add(luchadorConPuntuacionTotal);
                     }
                 }

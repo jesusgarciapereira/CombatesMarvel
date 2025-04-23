@@ -141,10 +141,10 @@ BL
 	}
 
 	clsManejadoraCombatesBL{
-		private static bool CreaCombateBL(clsCombate combate)
-		private static bool ActualizaCombateBL(clsCombate combate)
-		private static bool CompruebaExistenciaCombateBL(clsCombate combate)
-		public static bool GuardarCombateBL(clsCombate combate)
+		// private static bool CreaCombateBL(clsCombate combate)
+		// private static bool ActualizaCombateBL(clsCombate combate)
+		// private static bool CompruebaExistenciaCombateBL(clsCombate combate)
+		public static bool GuardarCombateBL(clsCombate combate) // Creo que la BL sólo debería tener éste porque las otras están private en la DAL
 	}
 
 DTO
@@ -154,7 +154,7 @@ DTO
         public int PuntosTotales
         {
             get { return puntosTotales; }
-            set { puntosTotales = value; } // ¿No tiene este?
+            // set { puntosTotales = value; } // ¿No tiene este? Pues no
         }
 
         public clsLuchadorConPuntuacionTotal()
@@ -175,11 +175,13 @@ ASP
 
 		CombateController: Controller{
 			IActionResult Index(){
-				return View(clsPuntuacionCombate PuntuacionCombate); // O ESTO List<clsLuchador>
+				return View(clsPuntuacionCombateVM puntuacion()); // ¿O ESTO List<clsLuchador>?
 			}
 
 			[HttpPost]
-			IActionResult Index(clsCombate combate) 
+			IActionResult Index(clsCombate combate){
+				return (clsPuntuacionCombateVM puntuacion(combate));
+			} 
 		}
 
 		ClasificacionController: Controller{
@@ -190,8 +192,8 @@ ASP
 		
 	Models	
 		VM
-			// Para la página 1 PUEDE QUE TODO ESTO NO HAGA FALTA AQUÍ. Pero sí me hizo falta
-			clsPuntuacionCombate : Combate { 
+			// Para la página 1 PUEDE QUE TODO ESTO NO HAGA FALTA AQUÍ. Pero a mí sí me hizo falta
+			clsPuntuacionCombateVM : Combate { 
 				private List<clsLuchador> listadoLuchadores;
 
 				public List<clsLuchador> ListadoLuchadores
@@ -213,7 +215,7 @@ ASP
 
 			}
 
-			// Para la página 2
+			// Para la página 2, pero esto lo tengo en la DAL ¿o está mal?
 			clsListadoLuchadoresConPuntuacionTotal{ 
 				private List<clsLuchadorConPuntuacionTotal> listadoLuchadoresConPuntuacionTotal;
 

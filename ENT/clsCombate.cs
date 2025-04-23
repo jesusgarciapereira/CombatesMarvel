@@ -65,7 +65,7 @@ namespace ENT
         {
             this.idLuchador1 = idLuchador1;
             this.idLuchador2 = idLuchador2;
-            this.fecha = DateTime.Now;
+            this.fecha = DateTime.Now; // Importante
             this.puntosLuchador1 = puntosLuchador1;
             this.puntosLuchador2 = puntosLuchador2;
         }

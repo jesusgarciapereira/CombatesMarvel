@@ -18,7 +18,7 @@ namespace DTO
         public int PuntosTotales
         {
             get { return puntosTotales; }
-            set { puntosTotales = value; } // ¿No tiene este?
+            // set { puntosTotales = value; } // ¿No tiene este? Pues no
         }
 
         public clsLuchadorConPuntuacionTotal()
