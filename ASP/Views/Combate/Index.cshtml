@@ -1,0 +1,120 @@
+﻿@using ENT
+@model ASP.Models.VM.clsPuntuacionCombateVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Puntuar Combate</h1>
+
+
+@if (ViewBag.mensaje != null)
+{
+    <h4>@ViewBag.mensaje</h4>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="IdLuchador1" class="control-label"></label>
+                <select name="IdLuchador1" class="form-control">
+                    <!--Puedes sustituir name por asp-for-->
+                    @foreach (clsLuchador luchador in Model.ListadoLuchadores)
+                    {
+                        if (Model.IdLuchador1 != luchador.IdLuchador)
+                        {
+                            <option value="@luchador.IdLuchador">@luchador.Nombre</option>
+                        }
+                        else
+                        {
+                            <option value="@luchador.IdLuchador" selected>@luchador.Nombre</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="IdLuchador1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdLuchador2" class="control-label"></label>
+                <select name="IdLuchador2" class="form-control">
+                    <!--Puedes sustituir name por asp-for-->
+                    @foreach (clsLuchador luchador in Model.ListadoLuchadores)
+                    {
+                        if (Model.IdLuchador2 != luchador.IdLuchador)
+                        {
+                            <option value="@luchador.IdLuchador">@luchador.Nombre</option>
+                        }
+                        else
+                        {
+                            <option value="@luchador.IdLuchador" selected>@luchador.Nombre</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="IdLuchador2" class="text-danger"></span>
+            </div>
+
+            <!--Esto debería ponerse solo
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            -->
+
+            <div class="form-group">
+                <label asp-for="PuntosLuchador1" class="control-label"></label>
+                <select name="PuntosLuchador1" class="form-control">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        @if (Model.PuntosLuchador1 != i)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                        else
+                        {
+                            <option value="@i" selected>@i</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="PuntosLuchador1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PuntosLuchador2" class="control-label"></label>
+                <select name="PuntosLuchador2" class="form-control">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    @if (Model.PuntosLuchador2 != i)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                }
+                </select>
+                <span asp-validation-for="PuntosLuchador2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a href="@Url.Action("Index", "Clasificacion")">Ver Clasificación</a>
+</div>
+
+<div class="text-center">
+    <a href="@Url.Action("Index", "Home")">Volver a la Página Principal</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

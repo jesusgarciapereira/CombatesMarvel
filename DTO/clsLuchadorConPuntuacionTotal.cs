@@ -1,6 +1,7 @@
 ﻿using ENT;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace DTO
 {
     public class clsLuchadorConPuntuacionTotal : clsLuchador
     {
+        
         private int puntosTotales;
 
+        [Display(Name = "Puntos Totales")]
         public int PuntosTotales
         {
             get { return puntosTotales; }

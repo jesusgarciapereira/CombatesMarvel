@@ -64,7 +64,6 @@ ENT
         public DateTime Fecha
         {
             get { return fecha; }
-            set { fecha = value; } // No lo creo ¿o puede?
         }
 
         public int PuntosLuchador1
@@ -184,34 +183,32 @@ ASP
 		}
 
 		ClasificacionController: Controller{
-			IActionResult Index()
+			IActionResult Index(){
+				return View(List<clsLuchadorConPuntuacionTotal> listadoLuchadoresConPuntuacionTotal)
+			}
 		}
 		
 	Models	
 		VM
-			// Para la página 1 PUEDE QUE TODO ESTO NO HAGA FALTA AQUÍ
+			// Para la página 1 PUEDE QUE TODO ESTO NO HAGA FALTA AQUÍ. Pero sí me hizo falta
 			clsPuntuacionCombate : Combate { 
 				private List<clsLuchador> listadoLuchadores;
-				private List<Integer> puntuaciones;
 
 				public List<clsLuchador> ListadoLuchadores
 				{
-					get {return listadoLuchadores;}
+				    get { return listadoLuchadores; }
 				}
 
-				public List<Integer> Puntuaciones
+				public clsPuntuacionCombateVM() : base()
 				{
-					get {return puntuaciones;}
+				    this.listadoLuchadores = clsListadosLuchadoresBL.ObtenerListadoLuchadoresBL();
+				    listadoLuchadores.Insert(0, new clsLuchador(0, "--- Seleccione un Luchador ---", ""));
 				}
 
-				public clsPuntuacionCombate() : base()
+				public clsPuntuacionCombateVM(clsCombate combate) : base(combate.IdLuchador1, combate.IdLuchador2, combate.PuntosLuchador1, combate.PuntosLuchador2)
 				{
-				}
-
-				public clsPuntuacionCombate(List<clsLuchador> listadoLuchadores, List<Integer> puntuaciones) : base(int idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2)
-				{
-					this.listadoLuchadores = listadoLuchadores;
-					this.puntuaciones = puntuaciones;
+				    this.listadoLuchadores = clsListadosLuchadoresBL.ObtenerListadoLuchadoresBL();
+				    listadoLuchadores.Insert(0, new clsLuchador(0, "--- Seleccione un Luchador ---", ""));
 				}
 
 			}

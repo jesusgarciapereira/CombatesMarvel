@@ -1,4 +1,6 @@
-﻿namespace ENT
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ENT
 {
     public class clsLuchador
     {
@@ -10,6 +12,7 @@
         #endregion
 
         #region Propiedades
+        [Display(Name = "ID")]
         public int IdLuchador
         {
             get { return idLuchador; }

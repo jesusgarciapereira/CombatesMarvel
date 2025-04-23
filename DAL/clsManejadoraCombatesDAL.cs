@@ -125,9 +125,18 @@ namespace DAL
                 if (miLector.HasRows)
                 {
                     resultado = 1;
+
                 }
                 else
                 {
+                    // Cierra el lector de datos (importante para liberar recursos)
+                    miLector.Close();
+                    // Cierra la conexión a la base de datos usando el método de la clase de conexión
+                    clsMyConnection.closeConnection(ref miConexion);
+
+                    // Establece la conexión con la base de datos
+                    miConexion = clsMyConnection.getConnection();
+
                     miComando.CommandText = "SELECT * FROM Combates WHERE idLuchador1=@idLuchador2 AND idLuchador2=@idLuchador1 AND fecha=@fecha";
                     miComando.Connection = miConexion;
                     miLector = miComando.ExecuteReader();
@@ -166,7 +175,7 @@ namespace DAL
                 switch (opcion)
                 {
                     case 0:
-                        // El combate no existe, lo insertamos
+                        // El combate no existe, lo creamos
                         CreaCombateDAL(combate);
 
                         break;
