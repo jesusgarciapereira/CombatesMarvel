@@ -237,7 +237,7 @@ MAUI
 				¿public? List<clsLuchador> listadoLuchadores;
 				¿public? List<Integer> puntuaciones; // Quizás mejor int puntuacionMaxima
 				¿public? clsLuchador luchadorElegido1;
-				¿public? clsLuchador luchadorElegido2;
+				public? clsLuchador luchadorElegido2;
 				¿public? int puntuacionElegida1;
 				¿public? int puntuacionElegida2;
 				¿public? Command botonEnviar;
