@@ -233,15 +233,15 @@ ASP
 MAUI 
 	VM
 			// Para la página 1 
-			clsPuntuacionCombate : Combate { // Creo que no Hereda
-				private List<clsLuchador> listadoLuchadores;
-				private List<Integer> puntuaciones;
-				private clsLuchador luchadorElegido1;
-				private clsLuchador luchadorElegido2;
-				private int puntuacionElegida1;
-				private int puntuacionElegida2;
-				private Command botonEnviar;
-
+			clsPuntuacionCombateVM : Combate { // Creo que no Hereda
+				¿public? List<clsLuchador> listadoLuchadores;
+				¿public? List<Integer> puntuaciones; // Quizás mejor int puntuacionMaxima
+				¿public? clsLuchador luchadorElegido1;
+				¿public? clsLuchador luchadorElegido2;
+				¿public? int puntuacionElegida1;
+				¿public? int puntuacionElegida2;
+				¿public? Command botonEnviar;
+				private clsCombate combate;
 
 				public List<clsLuchador> ListadoLuchadores
 				{
