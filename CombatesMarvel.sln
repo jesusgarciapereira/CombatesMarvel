@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{AC5375B1-9171-405A-B823-88C1E85C0CA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{DBA49B3A-333A-436A-9FC4-EE2A55557918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{DBA49B3A-333A-436A-9FC4-EE2A55557918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUI", "MAUI\MAUI.csproj", "{D42A2473-EFFB-4E54-8E79-990D4036BC9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{DBA49B3A-333A-436A-9FC4-EE2A55557918}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBA49B3A-333A-436A-9FC4-EE2A55557918}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBA49B3A-333A-436A-9FC4-EE2A55557918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42A2473-EFFB-4E54-8E79-990D4036BC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42A2473-EFFB-4E54-8E79-990D4036BC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42A2473-EFFB-4E54-8E79-990D4036BC9E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D42A2473-EFFB-4E54-8E79-990D4036BC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42A2473-EFFB-4E54-8E79-990D4036BC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42A2473-EFFB-4E54-8E79-990D4036BC9E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

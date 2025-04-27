@@ -234,65 +234,64 @@ MAUI
 	VM
 			// Para la página 1 
 			clsPuntuacionCombateVM : Combate { // Creo que no Hereda
-				¿public? List<clsLuchador> listadoLuchadores;
-				¿public? List<Integer> puntuaciones; // Quizás mejor int puntuacionMaxima
-				¿public? clsLuchador luchadorElegido1;
-				public? clsLuchador luchadorElegido2;
-				¿public? int puntuacionElegida1;
-				¿public? int puntuacionElegida2;
-				¿public? Command botonEnviar;
+				private ObservableCollection<clsLuchador> listadoLuchadores;
+				private int puntuacionMaxima;
+				private clsLuchador luchadorElegido1;
+				private clsLuchador luchadorElegido2;
+				private int puntuacionElegida1;
+				private int puntuacionElegida2;
+				private DelegateCommand botonEnviar;
 				private clsCombate combate;
 
-				public List<clsLuchador> ListadoLuchadores
+				public ObservableCollection<clsLuchador> ListadoLuchadores
 				{
-					get {return listadoLuchadores;}
+				    get { return listadoLuchadores; }
 				}
 
-				public List<Integer> Puntuaciones
+				public int PuntuacionMaxima
 				{
-					get {return puntuaciones;}
+				    get { return puntuacionMaxima; }
 				}
 
 				public clsLuchador LuchadorElegido1
 				{
-					get {return luchadorElegido1;}
-					set {luchadorElegido1 = value;} 
+				    get { return luchadorElegido1; }
+				    set { luchadorElegido1 = value; }
 				}
 
 				public clsLuchador LuchadorElegido2
 				{
-					get {return luchadorElegido2;}
-					set {luchadorElegido2 = value;} 
+				    get { return luchadorElegido2; }
+				    set { luchadorElegido2 = value; }
 				}
 
-				public clsLuchador PuntuacionElegida1
+				public int PuntuacionElegida1
 				{
-					get {return puntuacionElegida1;}
-					set {puntuacionElegida1 = value;} 
+				    get { return puntuacionElegida1; }
+				    set { puntuacionElegida1 = value; }
 				}
 
-				public clsLuchador PuntuacionElegida2
+				public int PuntuacionElegida2
 				{
-					get {return puntuacionElegida2;}
-					set {puntuacionElegida2 = value;} 
+				    get { return puntuacionElegida2; }
+				    set { puntuacionElegida2 = value; }
 				}
 
-				public Command BotonEnviar
+				public DelegateCommand BotonEnviar
 				{
-					get {return botonEnviar;}
+				    get { return botonEnviar; }
 				}
 
 
-				public clsPuntuacionCombate() : base()
+				public clsPuntuacionCombateVM() : base()
 				{
 				}
 
-				public clsPuntuacionCombate(List<clsLuchador> listadoLuchadores, List<Integer> puntuaciones) : base(idLuchador1, int idLuchador2, int puntosLuchador1, int puntosLuchador2)
+				public clsPuntuacionCombateVM(clsCombate combate, ObservableCollection<clsLuchador> listadoLuchadores,int puntuacionMaxima) : base(combate.IdLuchador1, combate.IdLuchador2, combate.PuntosLuchador1, combate.PuntosLuchador2)
 				{
-					this.listadoLuchadores = listadoLuchadores;
-					this.puntuaciones = puntuaciones;
+				    this.listadoLuchadores = listadoLuchadores;
+				    this.puntuacionMaxima = puntuacionMaxima;
 				}
-
 			}
 
 			// Para la página 2
