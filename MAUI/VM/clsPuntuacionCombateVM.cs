@@ -1,5 +1,8 @@
-﻿using ENT;
+﻿
+using BL;
+using ENT;
 using MAUI.VM.Utils;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,18 +15,18 @@ namespace MAUI.VM
     public class clsPuntuacionCombateVM : clsCombate
     {
         #region Atributos
-        private ObservableCollection<clsLuchador> listadoLuchadores;
+        private List<clsLuchador> listadoLuchadores;
         private int puntuacionMaxima;
         private clsLuchador luchadorElegido1;
         private clsLuchador luchadorElegido2;
         private int puntuacionElegida1;
         private int puntuacionElegida2;
-        private DelegateCommand botonEnviar;
+        private DelegateCommand botonGuardar;
         private clsCombate combate;
         #endregion
 
         #region Propiedades
-        public ObservableCollection<clsLuchador> ListadoLuchadores
+        public List<clsLuchador> ListadoLuchadores
         {
             get { return listadoLuchadores; }
         }
@@ -57,22 +60,99 @@ namespace MAUI.VM
             set { puntuacionElegida2 = value; }
         }
 
-        public DelegateCommand BotonEnviar
+        public DelegateCommand BotonGuardar
         {
-            get { return botonEnviar; }
+            get { return botonGuardar; }
         }
         #endregion
 
         #region Constructores
         public clsPuntuacionCombateVM() : base()
         {
+            botonGuardar = new DelegateCommand(guardarExecute); // Si quieres añade un parámetro/funcion para habilitar el command
+
+            try
+            {
+                listadoLuchadores = clsListadosLuchadoresBL.ObtenerListadoLuchadoresBL();
+            }
+            catch (SqlException e) // Mejor SQLException
+            {
+                muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
+            }
+
+
+
         }
 
-        public clsPuntuacionCombateVM(clsCombate combate, ObservableCollection<clsLuchador> listadoLuchadores,int puntuacionMaxima) : base(combate.IdLuchador1, combate.IdLuchador2, combate.PuntosLuchador1, combate.PuntosLuchador2)
+        // creo que este constructor no hace falta
+        public clsPuntuacionCombateVM(clsCombate combate, List<clsLuchador> listadoLuchadores, int puntuacionMaxima) : base(combate.IdLuchador1, combate.IdLuchador2, combate.PuntosLuchador1, combate.PuntosLuchador2)
         {
             this.listadoLuchadores = listadoLuchadores;
             this.puntuacionMaxima = puntuacionMaxima;
         }
         #endregion
+
+        #region Funciones
+        private async void muestraMensaje(string titulo, string cuerpo, string boton)
+        {
+            await Application.Current.MainPage.DisplayAlert(titulo, cuerpo, boton);
+        }
+
+
+        #endregion
+
+        #region Comandos
+        /// <summary>
+        /// Método asociado al execute del comando botonEnviar que actualiza la raza del caballo seleccionado
+        /// </summary>
+        private void guardarExecute()
+        {
+            bool hecho = false;
+
+            if (luchadorElegido1 == null || luchadorElegido2 == null)
+            {
+                muestraMensaje("Error", $"Debes seleccionar a dos Luchadores", "OK");
+            }
+            else if (
+                luchadorElegido1.IdLuchador == luchadorElegido2.IdLuchador)
+            {
+                muestraMensaje("Error", $"Los Luchadores seleccionados deben ser dferentes", "OK");
+            }
+            else
+            {
+                try
+                {
+                    // No sé si es así
+                    combate = new clsCombate(luchadorElegido1.IdLuchador, luchadorElegido2.IdLuchador, PuntosLuchador1, PuntosLuchador2);
+
+                    hecho = clsManejadoraCombatesBL.GuardarCombateBL(combate);
+                }
+                catch (SqlException e)
+                {
+                    muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
+                }
+            }
+
+            if (hecho)
+            {
+                muestraMensaje("Info", $"Se ha puntuado el combate perfectamente", "OK");
+            }
+        }
+
+        private bool habilitarGuardar()
+        {
+            bool habilitado = false;
+
+            if (luchadorElegido1 != null && luchadorElegido2 != null)
+            {
+                habilitado = true;
+            }
+
+            return habilitado;
+
+        }
+
+        #endregion
     }
 }
+

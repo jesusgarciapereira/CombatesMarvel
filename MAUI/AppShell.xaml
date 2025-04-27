@@ -7,9 +7,19 @@
     Shell.FlyoutBehavior="Disabled"
     Title="MAUI">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="Puntuar Combate"
+            ContentTemplate="{DataTemplate local:CombatePage}"
+            Route="CombatePage" />
+        <ShellContent
+            Title="Clasificación"
+            ContentTemplate="{DataTemplate local:ClasificacionPage}"
+            Route="ClasificacionPage" />
+    </FlyoutItem>
+    
 </Shell>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MAUI.VM"
+             x:Class="MAUI.Views.CombatePage"
+             Title="CombatePage">
+
+    <ContentPage.BindingContext>
+        <!-- Enlazamos el ViewModel -->
+        <vm:clsPuntuacionCombateVM />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="10" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+
+
+        <!-- Luchadores en la misma línea (HorizontalStackLayout) -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" VerticalOptions="CenterAndExpand">
+
+            <!-- Luchador 1 usando CollectionView -->
+            <CollectionView ItemsSource="{Binding ListadoLuchadores}"
+                            SelectedItem="{Binding LuchadorElegido1}"
+                            VerticalScrollBarVisibility="Never"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            HeightRequest="200"
+                            SelectionMode="Single"
+                            WidthRequest="160">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BackgroundColor="Gray" CornerRadius="10">
+                            <StackLayout>
+                                <Image Source="{Binding Foto}" 
+                                       WidthRequest="160" HeightRequest="160" 
+                                       Aspect="AspectFill" />
+                                <Label Text="{Binding Nombre}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!-- Configuración para hacer el scroll hacia arriba/abajo -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+
+            <!-- VS Imagen o Texto -->
+            <Image Source="VS.png"
+                   HeightRequest="180"
+                   HorizontalOptions="Center" 
+                   VerticalOptions="CenterAndExpand"/>
+
+            <!-- Luchador 2 usando CollectionView -->
+            <CollectionView ItemsSource="{Binding ListadoLuchadores}"
+                            SelectedItem="{Binding LuchadorElegido2}"
+                            VerticalScrollBarVisibility="Never"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            HeightRequest="200"
+                            SelectionMode="Single"
+                            WidthRequest="160">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BackgroundColor="Gray" CornerRadius="10">
+                            <StackLayout>
+                                <Image Source="{Binding Foto}" 
+                                       WidthRequest="160" HeightRequest="160" 
+                                       Aspect="AspectFill" />
+                                <Label Text="{Binding Nombre}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!-- Configuración para hacer el scroll hacia arriba/abajo -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+
+        </HorizontalStackLayout>
+
+        <!-- Contenedor horizontal para los sliders -->
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="40">
+
+            <!-- Puntuación Luchador 1 -->
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Puntuación Luchador 1"
+                       FontSize="18"
+                       HorizontalOptions="Center" />
+                <Slider Minimum="1" Maximum="5" Value="{Binding PuntuacionElegida1}"
+                        HorizontalOptions="FillAndExpand" WidthRequest="150"/>
+                <Label Text="{Binding PuntuacionElegida1}"
+                       FontSize="18"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+
+            <!-- Puntuación Luchador 2 -->
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Puntuación Luchador 2"
+                       FontSize="18"
+                       HorizontalOptions="Center" />
+                <Slider Minimum="1" Maximum="5" Value="{Binding PuntuacionElegida2}"
+                        HorizontalOptions="FillAndExpand" WidthRequest="150"/>
+                <Label Text="{Binding PuntuacionElegida2}"
+                       FontSize="18"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+
+        </HorizontalStackLayout>
+
+        <!-- Botón Enviar -->
+        <Button Text="Guardar"
+                Command="{Binding BotonGuardar}"
+                HorizontalOptions="FillAndExpand" />
+
+    </VerticalStackLayout>
+</ContentPage>
+
