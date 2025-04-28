@@ -39,13 +39,17 @@ namespace MAUI.VM
         public clsLuchador LuchadorElegido1
         {
             get { return luchadorElegido1; }
-            set { luchadorElegido1 = value; }
+            set { luchadorElegido1 = value; 
+            botonGuardar.RaiseCanExecuteChanged();
+            }
         }
 
         public clsLuchador LuchadorElegido2
         {
             get { return luchadorElegido2; }
-            set { luchadorElegido2 = value; }
+            set { luchadorElegido2 = value;
+                botonGuardar.RaiseCanExecuteChanged();
+            }
         }
 
         public int PuntuacionElegida1
@@ -74,7 +78,7 @@ namespace MAUI.VM
             puntuacionElegida2 = 1;
             puntuacionMaxima = 5;
 
-            botonGuardar = new DelegateCommand(guardarExecute); // Si quieres añade un parámetro/funcion para habilitar el command
+            botonGuardar = new DelegateCommand(guardarExecute, habilitarGuardar); // Si quieres añade un parámetro/funcion para habilitar el command
 
             try
             {
@@ -148,7 +152,7 @@ namespace MAUI.VM
         {
             bool habilitado = false;
 
-            if (luchadorElegido1 != null && luchadorElegido2 != null)
+            if (luchadorElegido1 != null && luchadorElegido2 != null && luchadorElegido1.IdLuchador != luchadorElegido2.IdLuchador)
             {
                 habilitado = true;
             }
