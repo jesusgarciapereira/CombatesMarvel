@@ -8,7 +8,7 @@ public partial class ClasificacionPage : ContentPage
 	{
 		InitializeComponent();
 
-        // Asignamos la lista de luchadores al CollectionView
-        LuchadoresCollectionView.ItemsSource = clsListadosLuchadoresConPuntuacionTotalBL.ObtenerListadoLuchadoresConPuntuacionTotalBL();
+        // Asignamos la lista de luchadores al CollectionView, no hace falta si tienes un VM
+        //LuchadoresCollectionView.ItemsSource = clsListadosLuchadoresConPuntuacionTotalBL.ObtenerListadoLuchadoresConPuntuacionTotalBL();
     }
 }

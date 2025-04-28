@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MAUI.VM"
              x:Class="MAUI.Views.ClasificacionPage"
              Title="Clasificación">
+
+    <ContentPage.BindingContext>
+        <vm:clsClasificacionVM />
+    </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="10" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
 
@@ -23,7 +28,9 @@
             </HorizontalStackLayout>
 
             <!-- Lista de luchadores -->
-            <CollectionView x:Name="LuchadoresCollectionView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <CollectionView ItemsSource="{Binding ListaLuchadoresConPuntuacionTotal}" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
@@ -46,6 +53,7 @@
 
     </VerticalStackLayout>
 </ContentPage>
+
 
 
 
