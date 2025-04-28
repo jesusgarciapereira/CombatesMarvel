@@ -9,50 +9,44 @@
         <vm:clsClasificacionVM />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="10" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+    <Grid Padding="10" RowDefinitions="Auto,*" ColumnDefinitions="*">
 
-        <!-- Título de la clasificación -->
-        <Label Text="Clasificación de Luchadores"
-               FontSize="24"
-               HorizontalOptions="Center" 
-               VerticalOptions="CenterAndExpand" />
+        <!-- Encabezados -->
+        <Grid ColumnDefinitions="*,2*,*,2*" RowDefinitions="Auto" Padding="10" HorizontalOptions="FillAndExpand" Grid.Row="0">
+            <Label Text="ID" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" />
+            <Label Text="Foto" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" />
+            <Label Text="Puntos Totales" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" />
+        </Grid>
 
-        <!-- Contenedor para la lista de luchadores -->
-        <VerticalStackLayout Padding="10" Spacing="5">
-            <!-- Encabezados -->
-            <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
-                <Label Text="ID" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                <Label Text="Foto" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                <Label Text="Puntos Totales" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-            </HorizontalStackLayout>
+        <!-- Lista de luchadores -->
+        <CollectionView ItemsSource="{Binding ListaLuchadoresConPuntuacionTotal}" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,2*,*,2*" Padding="10" HorizontalOptions="FillAndExpand">
+                        <!-- ID -->
+                        <Label Text="{Binding IdLuchador}" HorizontalOptions="Center" VerticalOptions="Center" />
 
-            <!-- Lista de luchadores -->
-            <CollectionView ItemsSource="{Binding ListaLuchadoresConPuntuacionTotal}" 
-                            HorizontalOptions="FillAndExpand" 
-                            VerticalOptions="FillAndExpand">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                            <!-- ID -->
-                            <Label Text="{Binding IdLuchador}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                        <!-- Nombre -->
+                        <Label Text="{Binding Nombre}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" />
 
-                            <!-- Nombre -->
-                            <Label Text="{Binding Nombre}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                        <!-- Foto -->
+                        <Image Source="{Binding Foto}" WidthRequest="160" HeightRequest="160" Aspect="AspectFill" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" />
 
-                            <!-- Foto -->
-                            <Image Source="{Binding Foto}" WidthRequest="40" HeightRequest="40" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <!-- Puntos Totales -->
+                        <Label Text="{Binding PuntosTotales}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-                            <!-- Puntos Totales -->
-                            <Label Text="{Binding PuntosTotales}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
+
+
 
 
 
