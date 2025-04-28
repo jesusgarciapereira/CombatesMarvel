@@ -2,11 +2,50 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUI.Views.ClasificacionPage"
-             Title="ClasificacionPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Clasificación">
+
+    <VerticalStackLayout Padding="10" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+
+        <!-- Título de la clasificación -->
+        <Label Text="Clasificación de Luchadores"
+               FontSize="24"
+               HorizontalOptions="Center" 
+               VerticalOptions="CenterAndExpand" />
+
+        <!-- Contenedor para la lista de luchadores -->
+        <VerticalStackLayout Padding="10" Spacing="5">
+            <!-- Encabezados -->
+            <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
+                <Label Text="ID" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                <Label Text="Foto" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                <Label Text="Puntos Totales" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Lista de luchadores -->
+            <CollectionView x:Name="LuchadoresCollectionView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <!-- ID -->
+                            <Label Text="{Binding IdLuchador}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+                            <!-- Nombre -->
+                            <Label Text="{Binding Nombre}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+                            <!-- Foto -->
+                            <Image Source="{Binding Foto}" WidthRequest="40" HeightRequest="40" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                            <!-- Puntos Totales -->
+                            <Label Text="{Binding PuntosTotales}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
+
+
+

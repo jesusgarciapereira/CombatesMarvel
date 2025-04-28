@@ -68,7 +68,11 @@ namespace MAUI.VM
 
         #region Constructores
         public clsPuntuacionCombateVM() : base()
+            
         {
+            puntuacionElegida1 = 1;
+            puntuacionElegida2 = 1;
+
             botonGuardar = new DelegateCommand(guardarExecute); // Si quieres añade un parámetro/funcion para habilitar el command
 
             try
@@ -103,7 +107,7 @@ namespace MAUI.VM
 
         #region Comandos
         /// <summary>
-        /// Método asociado al execute del comando botonEnviar que actualiza la raza del caballo seleccionado
+        /// Método asociado al execute del comando guardarExecute que guarda el Combate
         /// </summary>
         private void guardarExecute()
         {
@@ -123,7 +127,7 @@ namespace MAUI.VM
                 try
                 {
                     // No sé si es así
-                    combate = new clsCombate(luchadorElegido1.IdLuchador, luchadorElegido2.IdLuchador, PuntosLuchador1, PuntosLuchador2);
+                    combate = new clsCombate(luchadorElegido1.IdLuchador, luchadorElegido2.IdLuchador, puntuacionElegida1, puntuacionElegida2);
 
                     hecho = clsManejadoraCombatesBL.GuardarCombateBL(combate);
                 }

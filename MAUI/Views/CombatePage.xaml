@@ -3,21 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MAUI.VM"
              x:Class="MAUI.Views.CombatePage"
-             Title="CombatePage">
+             Title="Combate">
 
     <ContentPage.BindingContext>
-        <!-- Enlazamos el ViewModel -->
         <vm:clsPuntuacionCombateVM />
     </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="10" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-
-
-        <!-- Luchadores en la misma línea (HorizontalStackLayout) -->
+        <!-- Luchadores en la misma línea -->
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" VerticalOptions="CenterAndExpand">
 
-            <!-- Luchador 1 usando CollectionView -->
+            <!-- Luchador 1 -->
             <CollectionView ItemsSource="{Binding ListadoLuchadores}"
                             SelectedItem="{Binding LuchadorElegido1}"
                             VerticalScrollBarVisibility="Never"
@@ -28,7 +25,24 @@
                             WidthRequest="160">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="10" Margin="5" BackgroundColor="Gray" CornerRadius="10">
+                        <Border StrokeThickness="0" BackgroundColor="Transparent" Padding="10" Margin="5" StrokeShape="RoundRectangle 10">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="LightGreen"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+
                             <StackLayout>
                                 <Image Source="{Binding Foto}" 
                                        WidthRequest="160" HeightRequest="160" 
@@ -37,23 +51,22 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="CenterAndExpand" />
                             </StackLayout>
-                        </Frame>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
-                <!-- Configuración para hacer el scroll hacia arriba/abajo -->
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
 
-            <!-- VS Imagen o Texto -->
+            <!-- Imagen VS -->
             <Image Source="VS.png"
                    HeightRequest="180"
                    HorizontalOptions="Center" 
                    VerticalOptions="CenterAndExpand"/>
 
-            <!-- Luchador 2 usando CollectionView -->
+            <!-- Luchador 2 -->
             <CollectionView ItemsSource="{Binding ListadoLuchadores}"
                             SelectedItem="{Binding LuchadorElegido2}"
                             VerticalScrollBarVisibility="Never"
@@ -64,7 +77,24 @@
                             WidthRequest="160">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="10" Margin="5" BackgroundColor="Gray" CornerRadius="10">
+                        <Border StrokeThickness="0" BackgroundColor="Transparent" Padding="10" Margin="5" StrokeShape="RoundRectangle 10">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="LightGreen"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+
                             <StackLayout>
                                 <Image Source="{Binding Foto}" 
                                        WidthRequest="160" HeightRequest="160" 
@@ -73,11 +103,10 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="CenterAndExpand" />
                             </StackLayout>
-                        </Frame>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
-                <!-- Configuración para hacer el scroll hacia arriba/abajo -->
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
@@ -86,39 +115,45 @@
         </HorizontalStackLayout>
 
         <!-- Contenedor horizontal para los sliders -->
-        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="40">
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="194">
 
             <!-- Puntuación Luchador 1 -->
             <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label Text="Puntuación Luchador 1"
+                <Label Text="Puntuación"
                        FontSize="18"
                        HorizontalOptions="Center" />
                 <Slider Minimum="1" Maximum="5" Value="{Binding PuntuacionElegida1}"
-                        HorizontalOptions="FillAndExpand" WidthRequest="150"/>
-                <Label Text="{Binding PuntuacionElegida1}"
+                        HorizontalOptions="FillAndExpand" WidthRequest="150"
+                        x:Name="puntuacion1"/>
+                <Label BindingContext="{x:Reference puntuacion1}"
+                       Text="{Binding Value, StringFormat='{0:F0}'}"
                        FontSize="18"
                        HorizontalOptions="Center" />
             </StackLayout>
 
             <!-- Puntuación Luchador 2 -->
             <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label Text="Puntuación Luchador 2"
+                <Label Text="Puntuación"
                        FontSize="18"
                        HorizontalOptions="Center" />
                 <Slider Minimum="1" Maximum="5" Value="{Binding PuntuacionElegida2}"
-                        HorizontalOptions="FillAndExpand" WidthRequest="150"/>
-                <Label Text="{Binding PuntuacionElegida2}"
+                        HorizontalOptions="FillAndExpand" WidthRequest="150"
+                        x:Name="puntuacion2"/>
+                <Label BindingContext="{x:Reference puntuacion2}"
+                       Text="{Binding Value, StringFormat='{0:F0}'}"
                        FontSize="18"
                        HorizontalOptions="Center" />
             </StackLayout>
 
         </HorizontalStackLayout>
 
-        <!-- Botón Enviar -->
+        <!-- Botón Guardar -->
         <Button Text="Guardar"
                 Command="{Binding BotonGuardar}"
                 HorizontalOptions="FillAndExpand" />
 
     </VerticalStackLayout>
 </ContentPage>
+
+
 
