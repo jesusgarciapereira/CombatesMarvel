@@ -25,7 +25,7 @@
                             WidthRequest="160">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border StrokeThickness="0" BackgroundColor="Transparent" Padding="10" Margin="5" StrokeShape="RoundRectangle 10">
+                        <Border StrokeThickness="0" BackgroundColor="Transparent" Padding="5" Margin="5" StrokeShape="RoundRectangle 10">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroupList>
                                     <VisualStateGroup x:Name="CommonStates">
@@ -77,7 +77,7 @@
                             WidthRequest="160">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border StrokeThickness="0" BackgroundColor="Transparent" Padding="10" Margin="5" StrokeShape="RoundRectangle 10">
+                        <Border StrokeThickness="0" BackgroundColor="Transparent" Padding="5" Margin="5" StrokeShape="RoundRectangle 10">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroupList>
                                     <VisualStateGroup x:Name="CommonStates">
