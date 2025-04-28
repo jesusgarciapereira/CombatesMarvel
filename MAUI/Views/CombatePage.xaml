@@ -122,7 +122,7 @@
                 <Label Text="Puntuación"
                        FontSize="18"
                        HorizontalOptions="Center" />
-                <Slider Minimum="1" Maximum="5" Value="{Binding PuntuacionElegida1}"
+                <Slider Minimum="1" Maximum="{Binding PuntuacionMaxima}" Value="{Binding PuntuacionElegida1}"
                         HorizontalOptions="FillAndExpand" WidthRequest="150"
                         x:Name="puntuacion1"/>
                 <Label BindingContext="{x:Reference puntuacion1}"
@@ -136,7 +136,7 @@
                 <Label Text="Puntuación"
                        FontSize="18"
                        HorizontalOptions="Center" />
-                <Slider Minimum="1" Maximum="5" Value="{Binding PuntuacionElegida2}"
+                <Slider Minimum="1" Maximum="{Binding PuntuacionMaxima}" Value="{Binding PuntuacionElegida2}"
                         HorizontalOptions="FillAndExpand" WidthRequest="150"
                         x:Name="puntuacion2"/>
                 <Label BindingContext="{x:Reference puntuacion2}"

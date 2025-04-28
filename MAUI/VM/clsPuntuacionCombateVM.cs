@@ -72,6 +72,7 @@ namespace MAUI.VM
         {
             puntuacionElegida1 = 1;
             puntuacionElegida2 = 1;
+            puntuacionMaxima = 5;
 
             botonGuardar = new DelegateCommand(guardarExecute); // Si quieres añade un parámetro/funcion para habilitar el command
 
