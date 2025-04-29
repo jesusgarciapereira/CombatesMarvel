@@ -1,14 +1,25 @@
 using BL;
+using MAUI.VM;
 
 namespace MAUI.Views;
 
 public partial class ClasificacionPage : ContentPage
 {
-	public ClasificacionPage()
+    clsClasificacionVM miVM;
+
+
+    public ClasificacionPage()
 	{
 		InitializeComponent();
 
-        // Asignamos la lista de luchadores al CollectionView, no hace falta si tienes un VM
-        //LuchadoresCollectionView.ItemsSource = clsListadosLuchadoresConPuntuacionTotalBL.ObtenerListadoLuchadoresConPuntuacionTotalBL();
+        miVM = (clsClasificacionVM)this.BindingContext;
+
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        miVM.actualizarClasificacion();
     }
 }
