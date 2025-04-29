@@ -15,7 +15,7 @@ namespace MAUI.VM
     public class clsPuntuacionCombateVM 
     {
         #region Atributos
-        private List<clsLuchador> listadoLuchadores;
+        private ObservableCollection<clsLuchador> listadoLuchadores;
         private int puntuacionMaxima;
         private clsLuchador luchadorElegido1;
         private clsLuchador luchadorElegido2;
@@ -26,7 +26,7 @@ namespace MAUI.VM
         #endregion
 
         #region Propiedades
-        public List<clsLuchador> ListadoLuchadores
+        public ObservableCollection<clsLuchador> ListadoLuchadores
         {
             get { return listadoLuchadores; }
         }
@@ -83,18 +83,21 @@ namespace MAUI.VM
             puntuacionMaxima = 5;
 
             botonGuardar = new DelegateCommand(guardarExecute, habilitarGuardar); // Si quieres añade un parámetro/funcion para habilitar el command
-
             try
             {
-                listadoLuchadores = clsListadosLuchadoresBL.ObtenerListadoLuchadoresBL();
+                // Esto es mejor que rellenarlo recorriéndolo
+                listadoLuchadores = new ObservableCollection<clsLuchador>(clsListadosLuchadoresBL.ObtenerListadoLuchadoresBL());
+
+                //foreach (clsLuchador luchador in clsListadosLuchadoresBL.ObtenerListadoLuchadoresBL())
+                //{
+                //    listadoLuchadores.Add(luchador);
+                //}
+                
             }
             catch (SqlException e) // Mejor SQLException
             {
                 muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
             }
-
-
-
         }
 
         // Creo que este Constructor no hace falta
