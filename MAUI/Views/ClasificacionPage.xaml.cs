@@ -11,7 +11,7 @@ public partial class ClasificacionPage : ContentPage
     public ClasificacionPage()
 	{
 		InitializeComponent();
-
+        
         miVM = (clsClasificacionVM)this.BindingContext;
 
     }

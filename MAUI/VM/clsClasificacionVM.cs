@@ -41,6 +41,11 @@ namespace MAUI.VM
         #endregion
 
         #region Métodos
+
+        /// <summary>
+        /// Actualiza la lista de luchadores con su puntuación total llamando a la Base de Datos.
+        /// Se asigna a la propiedad para notificar el cambio y actualizar la vista.
+        /// </summary>
         public void actualizarClasificacion() {
 
             // En mayúscula porque necesito que llame al set para notificarlo
@@ -49,6 +54,10 @@ namespace MAUI.VM
         }
 
 
+        /// <summary>
+        /// Lanza el evento PropertyChanged para notificar a la vista que una propiedad ha cambiado.
+        /// </summary>
+        /// <param name="propertyName">Nombre de la propiedad que cambió.</param>
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
