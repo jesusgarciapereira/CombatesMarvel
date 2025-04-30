@@ -1,6 +1,7 @@
 ﻿using BL;
 using DTO;
 using ENT;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,11 +23,11 @@ namespace MAUI.VM
         public ObservableCollection<clsLuchadorConPuntuacionTotal> ListaLuchadoresConPuntuacionTotal
         {
             get { return listaLuchadoresConPuntuacionTotal; }
-            set
-            {
-                listaLuchadoresConPuntuacionTotal = value;
-                NotifyPropertyChanged(nameof(ListaLuchadoresConPuntuacionTotal));
-            }
+            //set
+            //{
+            //    listaLuchadoresConPuntuacionTotal = value;
+            //    NotifyPropertyChanged(nameof(ListaLuchadoresConPuntuacionTotal));
+            //}
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -36,7 +37,8 @@ namespace MAUI.VM
         #region Constructores
         public clsClasificacionVM()
         {
-            actualizarClasificacion();
+            // No hace falta dos veces
+            // actualizarClasificacion();
         }
         #endregion
 
@@ -44,13 +46,24 @@ namespace MAUI.VM
 
         /// <summary>
         /// Actualiza la lista de luchadores con su puntuación total llamando a la Base de Datos.
-        /// Se asigna a la propiedad para notificar el cambio y actualizar la vista.
         /// </summary>
-        public void actualizarClasificacion() {
+        public void actualizarClasificacion()
+        {
+            try
+            { 
+                listaLuchadoresConPuntuacionTotal = new ObservableCollection<clsLuchadorConPuntuacionTotal>
+                        (clsListadosLuchadoresConPuntuacionTotalBL.ObtenerListadoLuchadoresConPuntuacionTotalBL());
+               
+                // Aquí se debe notificar, no en un set
+                NotifyPropertyChanged(nameof(ListaLuchadoresConPuntuacionTotal));
 
-            // En mayúscula porque necesito que llame al set para notificarlo
-            ListaLuchadoresConPuntuacionTotal = new ObservableCollection<clsLuchadorConPuntuacionTotal>
-                    (clsListadosLuchadoresConPuntuacionTotalBL.ObtenerListadoLuchadoresConPuntuacionTotalBL());
+            }
+            catch (SqlException ex)
+
+            {
+                muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
+            }
+
         }
 
 
@@ -61,6 +74,17 @@ namespace MAUI.VM
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Muestra un mensaje emergente en la pantalla principal de la aplicación.
+        /// </summary>
+        /// <param name="titulo">Título del mensaje.</param>
+        /// <param name="cuerpo">Cuerpo del mensaje.</param>
+        /// <param name="boton">Texto del botón de cierre.</param>
+        private async void muestraMensaje(string titulo, string cuerpo, string boton)
+        {
+            await Application.Current.MainPage.DisplayAlert(titulo, cuerpo, boton);
         }
 
         #endregion
