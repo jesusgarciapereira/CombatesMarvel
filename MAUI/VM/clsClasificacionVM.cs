@@ -1,6 +1,7 @@
 ﻿using BL;
 using DTO;
 using ENT;
+using MAUI.VM.Utils;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace MAUI.VM
         #region Atributos
         private ObservableCollection<clsLuchadorConPuntuacionTotal> listaLuchadoresConPuntuacionTotal;
         private bool estaRefrescando;
-        private Command refrescarCommand;
+        private DelegateCommand refrescarCommand;
 
         #endregion
 
@@ -40,7 +41,7 @@ namespace MAUI.VM
 
         }
 
-        public ICommand RefrescarCommand
+        public DelegateCommand RefrescarCommand
         {
             get { return refrescarCommand; }
         }
@@ -55,7 +56,7 @@ namespace MAUI.VM
             // No hace falta dos veces
             // actualizarClasificacion();
 
-            refrescarCommand = new Command(RefrescarClasificacion);
+            refrescarCommand = new DelegateCommand(RefrescarClasificacion);
         }
         #endregion
 
