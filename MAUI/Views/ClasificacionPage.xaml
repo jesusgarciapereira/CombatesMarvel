@@ -12,36 +12,33 @@
     <Grid Padding="10" RowDefinitions="Auto,*" ColumnDefinitions="*">
 
         <!-- Encabezados -->
-        <Grid ColumnDefinitions="*,2*,*,2*" RowDefinitions="Auto" Padding="10" HorizontalOptions="FillAndExpand" Grid.Row="0">
+        <Grid ColumnDefinitions="*,2*,*,2*" RowDefinitions="Auto"
+          Padding="10"
+          HorizontalOptions="FillAndExpand"
+          Grid.Row="0">
             <Label Text="ID" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
             <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" />
             <Label Text="Foto" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" />
             <Label Text="Puntos Totales" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" />
         </Grid>
 
-        <!-- Lista de luchadores -->
-        <CollectionView ItemsSource="{Binding ListaLuchadoresConPuntuacionTotal}" 
+        <!-- Lista con refresco -->
+        <RefreshView IsRefreshing="{Binding EstaRefrescando}" Command="{Binding RefrescarCommand}" Grid.Row="1">
+            <CollectionView ItemsSource="{Binding ListaLuchadoresConPuntuacionTotal}" 
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        Grid.Row="1">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="*,2*,*,2*" Padding="10" HorizontalOptions="FillAndExpand">
-                        <!-- ID -->
-                        <Label Text="{Binding IdLuchador}" HorizontalOptions="Center" VerticalOptions="Center" />
-
-                        <!-- Nombre -->
-                        <Label Text="{Binding Nombre}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" />
-
-                        <!-- Foto -->
-                        <Image Source="{Binding Foto}" WidthRequest="160" HeightRequest="160" Aspect="AspectFill" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" />
-
-                        <!-- Puntos Totales -->
-                        <Label Text="{Binding PuntosTotales}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,2*,*,2*" Padding="10" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding IdLuchador}" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label Text="{Binding Nombre}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Image Source="{Binding Foto}" WidthRequest="160" HeightRequest="160" Aspect="AspectFill" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label Text="{Binding PuntosTotales}" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
 
     </Grid>
 </ContentPage>
