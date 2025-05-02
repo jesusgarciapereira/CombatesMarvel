@@ -92,6 +92,7 @@ namespace DAL
 
         /// <summary>
         /// Consulta en la BBDD la existencia del combate que le pasamos por parámetro
+        /// PARA LA PROXIMA VEZ, QUE LA CONSULTA SEA UN COUNT Y ExecuteScalar();
         /// </summary>
         /// <param name="combate">Objeto de tipo clsCombate</param>
         /// <returns>0 si no existe, 1 si existe y 2 si existe pero con los id intercambiados</returns>
