@@ -103,16 +103,22 @@ ENT
 
 DAL
 	clsListadosLuchadoresDAL{
-		public static List<clsLuchador> ObtenerListadoLuchadoresDAL()
+		public static List<clsLuchador> ObtenerListadoLuchadoresDAL(){
+			// TODO: Llama a la lista de luchadores de la Base de Datos
+		}
 	}
 
 	clsListadosCombatesDAL{
-		public static List<clsCombate> ObtenerListadoCombatesDAL()
+		public static List<clsCombate> ObtenerListadoCombatesDAL(){
+			// TODO: Llama a la lista de combates de la Base de Datos
+		}
 	
 	}
 
 	clsListadosLuchadoresConPuntuacionTotalDAL{
-		public static List<clsLuchadorConPuntuacionTotal> ObtenerListadoLuchadoresConPuntuacionTotalDAL()
+		public static List<clsLuchadorConPuntuacionTotal> ObtenerListadoLuchadoresConPuntuacionTotalDAL(){
+			// TODO: Llama a la lista de luchadoresConPuntuacionTotal de la Base de Datos
+		}
 	}
 
 	clsManejadoraCombatesDAL{
@@ -165,7 +171,7 @@ DTO
         {
             this.puntosTotales = puntosTotales;
         }
-		}
+	}
 
 ASP
 	Controllers
